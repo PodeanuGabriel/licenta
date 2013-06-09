@@ -84,12 +84,12 @@ class TransactionsController < ApplicationController
   def claim_coupon
 
      @check = Transaction.find(:all,
-                               :select => " count(user_id) as number ",
+                               :select => " count(user_id) ",
                                :conditions => " user_id = #{ params[:device_id] }
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
 
-     if @check.number == 0
+     if @check == 0
 
       @buy_coupon = Transaction.create(  :user_id => params[:device_id],
                                          :coupon_id => params[:coupon_id],

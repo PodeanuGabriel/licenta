@@ -104,12 +104,10 @@ class TransactionsController < ApplicationController
                               )
 
       @quantity = Coupon.find(:all,
-                              :select => "number_of_coupons",
+                              :select => "number_of_coupons - 1",
                               :conditions => " id = #{params[:coupon_id]}")
 
-      @difference = @quantity - 1
-
-      @quantity.update( quantity: @difference )
+      @quantity.update( quantity: @quantity.number_of_coupons )
       @quantity.save
 
      end

@@ -91,11 +91,11 @@ class TransactionsController < ApplicationController
 
      if @check.number == 0
 
-      @buy_coupon = Transaction.create(  :user_id => "#{params[:device_id]}",
-                                         :coupon_id => "#{params[:coupon_id]}",
+      @buy_coupon = Transaction.create(  :user_id => params[:device_id],
+                                         :coupon_id => params[:coupon_id],
                                          :quantity => 1,
                                          :date => Time.now,
-                                         :savings => "#{params[:savings]}"
+                                         :savings => params[:savings]
                                       )
 
       @quantity = Coupon.find_by_id("#{params[:coupon_id]}")

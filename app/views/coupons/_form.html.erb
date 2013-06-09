@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <% @company_names = Company.find(:all,
-                                     :joins => "JOIN 'users' on companies.owner_id = users.id",
+                                     :joins => "JOIN users on companies.owner_id = users.id",
                                      :select => " companies.id,companies.name ",
                                      :conditions => "users.email = '#{ current_user }'" ).map{|x| x} %>
     

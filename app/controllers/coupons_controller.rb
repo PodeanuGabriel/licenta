@@ -118,8 +118,10 @@ class CouponsController < ApplicationController
   def get_coupon_details
     @all_coupons = Coupon.find(:all,
                                :joins => " JOIN companies on companies.id = coupons.company_id",
-                               :select => "coupons.id, showcase_image, category_id, title, description, price_without_coupon,
-                                           price_with_coupon, phone, website, redeem_schedule, redeem_code, end_date, companies.name",
+                               :select => "coupons.id, coupons.showcase_image, coupons.category_id, coupons.title,
+                                           coupons.description, coupons.price_without_coupon,coupons.price_with_coupon,
+                                           coupons.phone, coupons.website, coupons.redeem_schedule, coupons.redeem_code,
+                                           coupons.end_date, companies.name",
                                :conditions => " coupons.id = #{ params[:id] } "
                               )
 

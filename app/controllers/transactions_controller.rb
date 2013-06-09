@@ -85,7 +85,8 @@ class TransactionsController < ApplicationController
 
      @check = Transaction.find(:all,
                                :select => " count(user_id) as number ",
-                               :conditions => " user_id = #{ device_id } and coupon_id = #{ coupon_id }"
+                               :conditions => " user_id = #{ params[:device_id] }
+                                                and coupon_id = #{ params[:coupon_id] }"
                               )
 
      if @check.number == 0

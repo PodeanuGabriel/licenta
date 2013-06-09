@@ -121,7 +121,13 @@ class CouponsController < ApplicationController
                                :select => "coupons.id, coupons.showcase_image, coupons.category_id, coupons.title,
                                            coupons.description, coupons.price_without_coupon,coupons.price_with_coupon,
                                            coupons.phone, coupons.website, coupons.redeem_schedule, coupons.redeem_code,
-                                           coupons.end_date, companies.name",
+                                           coupons.end_date, companies.name,
+                                           ( 
+                                             select count(coupon_id)
+                                             from transactions
+                                             where coupon_id = #{params[:id]}
+                                               and user_id = #{params[:device_id]}
+                                           ) as bought ",
                                :conditions => " coupons.id = #{ params[:id] } "
                               )
 

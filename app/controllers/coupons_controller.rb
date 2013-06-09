@@ -120,8 +120,8 @@ class CouponsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render json: @client_json }
-      format.json { render json: @client_json }
+      format.html { render json: @client_json.to_json }
+      format.json { render json: @client_json.to_json }
     end
 
   end

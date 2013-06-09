@@ -104,7 +104,7 @@ class TransactionsController < ApplicationController
                               )
       @quantity = Coupon.find(:all,
                               :select => "number_of_coupons",
-                              :conditions => "id id = #{params[:coupon_id]}")
+                              :conditions => " id = #{params[:coupon_id]}")
                             
       @update = Coupon.find(:all,
                             :conditions => " id = #{params[:coupon_id]}").update_column(:number_of_coupons, @quantity-1)

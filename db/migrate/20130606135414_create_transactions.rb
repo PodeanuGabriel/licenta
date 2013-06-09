@@ -1,8 +1,8 @@
 class CreateTransactions < ActiveRecord::Migration
   def change
     create_table :transactions do |t|
-      t.string :id
-      t.integer :user_id
+      t.integer :id
+      t.string :user_id
       t.integer :coupon_id
       t.date :buy_date
       t.integer :quantity

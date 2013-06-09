@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.find(:all,
-                              :joins => "JOIN 'users' on companies.owner_id = users.id ",
+                              :joins => "JOIN users on companies.owner_id = users.id ",
                               :select => " companies.id,companies.name,companies.address,
                                            companies.owner_id,companies.website,companies.logo ",
                               :conditions => "users.email = '#{ current_user }'" )

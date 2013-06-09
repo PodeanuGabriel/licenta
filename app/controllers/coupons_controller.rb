@@ -3,8 +3,8 @@ class CouponsController < ApplicationController
   # GET /coupons.json
   def index
     @coupons = Coupon.find(:all,
-                           :joins => "JOIN 'companies' on companies.id = coupons.company_id
-                                      JOIN 'users' on companies.owner_id = users.id",
+                           :joins => "JOIN companies on companies.id = coupons.company_id
+                                      JOIN users on companies.owner_id = users.id",
                            :select => " coupons.id,coupons.preview_image,coupons.showcase_image,coupons.title,coupons.description,
                                         coupons.latitude,coupons.longitude,coupons.phone,coupons.company_id,coupons.website,
                                         coupons.redeem_schedule,coupons.begin_date,coupons.end_date,coupons.redeem_code,

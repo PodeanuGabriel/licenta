@@ -88,8 +88,33 @@ class TransactionsController < ApplicationController
                                :conditions => " user_id = #{ params[:device_id] }
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
+     unless @check
 
-     
+      @buy_coupon = Transaction.create(  :user_id => params[:device_id],
+                                         :coupon_id => params[:coupon_id],
+                                         :quantity => 1,
+                                         :date => Time.now,
+                                         :savings => params[:savings]
+                                      )
+
+      @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
+
+      @difference = @quantity.quantity - 1
+
+      @quantity.update( quantity: @difference )
+      @quantity.save
+
+     end
+
+     respond_to do |format|
+      format.html { render json: @buy_coupon.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @buy_coupon.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @buy_coupon.to_json , :content_type => 'application/json' }
+      end
+     end
+
   end
 
 end

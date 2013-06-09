@@ -91,9 +91,9 @@ class CouponsController < ApplicationController
   def get_coupons
     @all_coupons = Coupon.find(:all,
                                :select => "id,category_id,preview_image,title,description,
-                                           ( 6371 * acos( cos( radians( #{params[:latit]} ) ) * cos( radians( latitude ) ) *
-                                                          cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
-                                                          sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
+                                           ( 6371 * acos( cos( radians( #{params[:latit].to_f} ) ) * cos( radians( latitude ) ) *
+                                                          cos( radians( longitude )           - radians( #{params[:longit].to_f} ) ) +
+                                                          sin( radians( #{params[:latit].to_f} ) ) * sin( radians( latitude ) )
                                                         )
                                            ) as distance ")
 

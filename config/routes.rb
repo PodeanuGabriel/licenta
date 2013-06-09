@@ -33,7 +33,7 @@ Server::Application.routes.draw do
 
   match '/home' , :to => 'index#show'
 
-  match '/get_coupons', :to => 'coupons#get_coupons' , via: :get_coupons
+  match '/get_coupons', :to => 'coupons#get_coupons'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

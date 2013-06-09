@@ -103,7 +103,9 @@ class TransactionsController < ApplicationController
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
 
-      @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
+      @quantity = Coupon.find(:all,
+                              :select => "quantity",
+                              :conditions => " coupon_id = #{params[:coupon_id]}")
 
       @difference = @quantity.quantity - 1
 

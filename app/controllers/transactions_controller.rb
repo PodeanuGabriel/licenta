@@ -89,7 +89,7 @@ class TransactionsController < ApplicationController
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
 
-     if @check == 0
+     unless @check
 
       @buy_coupon = Transaction.create(  :user_id => params[:device_id],
                                          :coupon_id => params[:coupon_id],

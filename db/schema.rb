@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130609065853) do
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "address"
-    t.string   "owner_id"
+    t.integer  "owner_id"
     t.string   "website"
     t.string   "logo"
     t.datetime "created_at", :null => false

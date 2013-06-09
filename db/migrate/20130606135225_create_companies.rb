@@ -4,7 +4,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.integer :id
       t.string :name
       t.string :address
-      t.string :owner_id
+      t.integer :owner_id
       t.string :website
       t.string :logo
 

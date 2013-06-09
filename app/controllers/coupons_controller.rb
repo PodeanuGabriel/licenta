@@ -108,14 +108,14 @@ class CouponsController < ApplicationController
     
     @all_coupons.each do |i|
       @client_json << {
-        :coupon => {
+        :coupon => [{
           :id => i.id,
           :productCategory => i.category_id,
           :previewImage => i.preview_image,
           :couponTitle => i.title,
           :couponDescription => i.description,
           :distance => i.distance
-        }
+        }]
       }
     end
 

@@ -89,7 +89,10 @@ class TransactionsController < ApplicationController
                                         :savings => "#{params[:savings]}"
                                       )
      @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
-     @quantity.update(quantity: quantity-1)
+
+     @difference = @quantity.quantity - 1
+
+     @quantity.update( quantity: @difference )
      @quantity.save
   end
 

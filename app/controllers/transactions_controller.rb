@@ -81,19 +81,37 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def check_transaction( coupon_id , device_id )
+
+    @check = Transaction.find(:all,
+                              :select => " count(user_id) ",
+                              :conditions => " user_id = #{ device_id } and coupon_id = #{ coupon_id }"
+                             )
+
+    return @check
+
+  end
+
   def claim_coupon
-     @buy_coupon = Transaction.create(  :user_id => "#{params[:device_id]}",
-                                        :coupon_id => "#{params[:coupon_id]}",
-                                        :quantity => 1,
-                                        :date => Time.now,
-                                        :savings => "#{params[:savings]}"
+
+     if check_transaction(params[:coupon_id],params[:device_id]) == 0
+
+      @buy_coupon = Transaction.create(  :user_id => "#{params[:device_id]}",
+                                         :coupon_id => "#{params[:coupon_id]}",
+                                         :quantity => 1,
+                                         :date => Time.now,
+                                         :savings => "#{params[:savings]}"
                                       )
-     @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
 
-     @difference = @quantity.quantity - 1
+      @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
 
-     @quantity.update( quantity: @difference )
-     @quantity.save
+      @difference = @quantity.quantity - 1
+
+      @quantity.update( quantity: @difference )
+      @quantity.save
+       
+     end
+     
   end
 
 end

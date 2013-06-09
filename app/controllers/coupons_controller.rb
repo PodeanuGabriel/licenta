@@ -96,9 +96,7 @@ class CouponsController < ApplicationController
                                                           sin( radians( #{params[:latit].to_f} ) ) * sin( radians( latitude ) )
                                                         )
                                            ) as distance ")
-
-    abort( @all_coupons )
-                             
+                            
     respond_to do |format|
       format.json { render json: @coupon }
     end

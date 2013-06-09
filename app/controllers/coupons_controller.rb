@@ -117,11 +117,10 @@ class CouponsController < ApplicationController
 
   def get_coupon_details
     @all_coupons = Coupon.find(:all,
-                               :joins => " JOIN companies on companies.id = coupons.company_id
-                                           JOIN favorites on coupons.id = favorites.coupon_id and #{params[:device_id]} = favorites.user_id",
+                               :joins => " JOIN companies on companies.id = coupons.company_id",
                                :select => "coupons.id, showcase_image, category_id, title, description, price_without_coupon,
-                                           price_with_coupon, phone,website, redeem_schedule, redeem_code, end_date, companies.name",
-                               :conditions => " coupons.id = '#{ params[:id] }' "
+                                           price_with_coupon, phone, website, redeem_schedule, redeem_code, end_date, companies.name",
+                               :conditions => " coupons.id = #{ params[:id] } "
                               )
 
     respond_to do |format|

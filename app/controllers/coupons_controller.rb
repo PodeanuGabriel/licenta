@@ -95,7 +95,7 @@ class CouponsController < ApplicationController
                                                           cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
                                                           sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
                                                         )
-                                           ) as distance ",
+                                           ) AS distance ",
                                :conditions => " #{params[:distance] } >= distance ",
                                :order => "distance asc"
                               )

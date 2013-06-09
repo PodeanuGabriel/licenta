@@ -108,6 +108,8 @@ class CouponsController < ApplicationController
     
     @client_json << { :coupon => "" }
 
+    @client_json = @client_json.to_json
+
     @all_coupons.each do |i|
       @client_json.coupon << [{
           :id => i.id,

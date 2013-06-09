@@ -126,7 +126,7 @@ class CouponsController < ApplicationController
                                              select count(coupon_id)
                                              from transactions
                                              where coupon_id = #{params[:id]}
-                                               and user_id = #{params[:device_id]}
+                                               and user_id = '#{params[:device_id]}'
                                            ) as bought ",
                                :conditions => " coupons.id = #{ params[:id] } "
                               )

@@ -6,8 +6,8 @@ class CreateCoupons < ActiveRecord::Migration
       t.string :showcase_image
       t.string :title
       t.string :description
-      t.real :latitude
-      t.real :longitude
+      t.float :latitude
+      t.float :longitude
       t.string :phone
       t.integer :company_id
       t.string :website

@@ -118,11 +118,11 @@ class CouponsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render json: @all_coupons , :content_type => 'application/json' }
+      format.html { render json: @all_coupons.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: @all_coupons , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @all_coupons.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: @all_coupons , :content_type => 'application/json' }
+        format.js { render json: @all_coupons.to_json , :content_type => 'application/json' }
       end
     end
 

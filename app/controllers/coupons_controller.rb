@@ -90,7 +90,7 @@ class CouponsController < ApplicationController
 
   def get_coupons
     @all_coupons = Coupon.find(:all,
-                               :select => "id,category_id,preview_image,title,description,
+                               :select => "id, category_id, preview_image, title, description,
                                            ( 6371 * acos( cos( radians( #{params[:latit]} ) ) * cos( radians( latitude ) ) *
                                                           cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
                                                           sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
@@ -103,19 +103,6 @@ class CouponsController < ApplicationController
                                                                          ) ",
                                :order => "distance asc"
                               )
-                              
-    @client_json = Array.new
-
-    @all_coupons.each do |i|
-      @client_json << {
-          :id => i.id,
-          :productCategory => i.category_id,
-          :previewImage => i.preview_image,
-          :couponTitle => i.title,
-          :couponDescription => i.description,
-          :distance => i.distance
-      }
-    end
 
     respond_to do |format|
       format.html { render json: @all_coupons.to_json , :content_type => 'application/json' }
@@ -125,6 +112,25 @@ class CouponsController < ApplicationController
         format.js { render json: @all_coupons.to_json , :content_type => 'application/json' }
       end
     end
+
+  end
+
+  def get_coupon_details
+    @all_coupons = Coupon.find(:all,
+                               :select => "id, showcase_image, category_id, title, description, price_without_coupon,
+                                           price_with_coupon, phone,website",
+                               :conditions => " id = '#{ params[:id] }' "
+                              )
+
+    respond_to do |format|
+      format.html { render json: @all_coupons.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @all_coupons.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @all_coupons.to_json , :content_type => 'application/json' }
+      end
+    end
+    
 
   end
 

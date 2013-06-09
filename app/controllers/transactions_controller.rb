@@ -80,4 +80,17 @@ class TransactionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def claim_coupon
+     @buy_coupon = Transaction.create(  :user_id => "#{params[:device_id]}",
+                                        :coupon_id => "#{params[:coupon_id]}",
+                                        :quantity => 1,
+                                        :date => Time.now,
+                                        :savings => "#{params[:savings]}"
+                                      )
+     @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
+     @quantity.update(quantity: quantity-1)
+     @quantity.save
+  end
+
 end

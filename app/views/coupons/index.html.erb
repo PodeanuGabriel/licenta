@@ -1,0 +1,58 @@
+<h1>Listing coupons</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Preview image</th>
+    <th>Showcase image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Phone</th>
+    <th>Company</th>
+    <th>Website</th>
+    <th>Redeem schedule</th>
+    <th>Begin date</th>
+    <th>End date</th>
+    <th>Redeem code</th>
+    <th>Number of coupons</th>
+    <th>Category</th>
+    <th>Price without coupon</th>
+    <th>Price with coupon</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @coupons.each do |coupon| %>
+  <tr>
+    <td><%= coupon.id %></td>
+    <td><%= coupon.preview_image %></td>
+    <td><%= coupon.showcase_image %></td>
+    <td><%= coupon.title %></td>
+    <td><%= coupon.description %></td>
+    <td><%= coupon.latitude %></td>
+    <td><%= coupon.longitude %></td>
+    <td><%= coupon.phone %></td>
+    <td><%= coupon.company_id %></td>
+    <td><%= coupon.website %></td>
+    <td><%= coupon.redeem_schedule %></td>
+    <td><%= coupon.begin_date %></td>
+    <td><%= coupon.end_date %></td>
+    <td><%= coupon.redeem_code %></td>
+    <td><%= coupon.number_of_coupons %></td>
+    <td><%= coupon.category_id %></td>
+    <td><%= coupon.price_without_coupon %></td>
+    <td><%= coupon.price_with_coupon %></td>
+    <td><%= link_to 'Show', coupon %></td>
+    <td><%= link_to 'Edit', edit_coupon_path(coupon) %></td>
+    <td><%= link_to 'Destroy', coupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Coupon', new_coupon_path %> |
+<%= link_to 'Home', home_path %>

@@ -1,0 +1,95 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @coupon.id %>
+</p>
+
+<p>
+  <b>Preview image:</b>
+  <%= @coupon.preview_image %>
+</p>
+
+<p>
+  <b>Showcase image:</b>
+  <%= @coupon.showcase_image %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @coupon.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @coupon.description %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @coupon.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @coupon.longitude %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @coupon.phone %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @coupon.company_id %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @coupon.website %>
+</p>
+
+<p>
+  <b>Redeem schedule:</b>
+  <%= @coupon.redeem_schedule %>
+</p>
+
+<p>
+  <b>Begin date:</b>
+  <%= @coupon.begin_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @coupon.end_date %>
+</p>
+
+<p>
+  <b>Redeem code:</b>
+  <%= @coupon.redeem_code %>
+</p>
+
+<p>
+  <b>Number of coupons:</b>
+  <%= @coupon.number_of_coupons %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @coupon.category_id %>
+</p>
+
+<p>
+  <b>Price without coupon:</b>
+  <%= @coupon.price_without_coupon %>
+</p>
+
+<p>
+  <b>Price with coupon:</b>
+  <%= @coupon.price_with_coupon %>
+</p>
+
+
+<%= link_to 'Edit', edit_coupon_path(@coupon) %> |
+<%= link_to 'Back', coupons_path %>

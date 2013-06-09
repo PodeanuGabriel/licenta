@@ -1,0 +1,40 @@
+@import 'bootstrap';
+
+.login-form
+{
+    color: rgb(51, 51, 51);
+    display: block;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 21px;
+    line-height: 40px;
+    margin: 40px auto 20px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    width: 480px;
+}
+
+.login-form #login_email, #login_password
+{
+    margin: 20px auto;
+    display: block;
+}
+
+.login-form .submit-btn div div button a
+{
+    color:#FFF;
+    text-decoration:none;
+}
+
+.login-form .submit-btn div div button a:hover
+{
+    color:white;
+    text-decoration:none;
+}
+
+.login-form .submit-btn div div button a:visited
+{
+    color:#FFF;
+    text-decoration:none;
+}

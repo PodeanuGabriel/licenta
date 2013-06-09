@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  preview_image: MyString
+  showcase_image: MyString
+  title: MyString
+  description: MyString
+  latitude: 1.5
+  longitude: 1.5
+  phone: MyString
+  company_id: 1
+  website: MyString
+  redeem_schedule: MyString
+  begin_date: 2013-06-06
+  end_date: 2013-06-06
+  redeem_code: MyString
+  number_of_coupons: 1
+  category_id: 1
+  price_without_coupon: 1
+  price_with_coupon: 1
+
+two:
+  id: 1
+  preview_image: MyString
+  showcase_image: MyString
+  title: MyString
+  description: MyString
+  latitude: 1.5
+  longitude: 1.5
+  phone: MyString
+  company_id: 1
+  website: MyString
+  redeem_schedule: MyString
+  begin_date: 2013-06-06
+  end_date: 2013-06-06
+  redeem_code: MyString
+  number_of_coupons: 1
+  category_id: 1
+  price_without_coupon: 1
+  price_with_coupon: 1

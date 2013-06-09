@@ -89,23 +89,6 @@ class TransactionsController < ApplicationController
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
 
-     unless @check
-
-      @buy_coupon = Transaction.create(  :user_id => params[:device_id],
-                                         :coupon_id => params[:coupon_id],
-                                         :quantity => 1,
-                                         :date => Time.now,
-                                         :savings => params[:savings]
-                                      )
-
-      @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
-
-      @difference = @quantity.quantity - 1
-
-      @quantity.update( quantity: @difference )
-      @quantity.save
-       
-     end
      
   end
 

@@ -104,7 +104,7 @@ class CouponsController < ApplicationController
                                :order => "distance asc"
                               )
                               
-    @client_json = Array.new(1)
+    @client_json = Array.new
 
     @all_coupons.each do |i|
       @client_json << [{

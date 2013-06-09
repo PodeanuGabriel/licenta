@@ -95,11 +95,29 @@ class CouponsController < ApplicationController
                                                           cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
                                                           sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
                                                         )
-                                           ) as distance ")
-                             
+                                           ) as distance ",
+                               :contidions => " #{params[:distance] } >= distance ",
+                               :order => "distance asc"
+                              )
+                              
+    @client_json = Array.new
+    
+    @all_coupons.each do |i|
+      @client_json << {
+        :coupon => {
+          :id => i.id,
+          :productCategory => i.category_id,
+          :previewImage => i.preview_image,
+          :couponTitle => i.title,
+          :couponDescription => i.description,
+          :distance => i.distance
+        }
+      }
+    end
+
     respond_to do |format|
-      format.html { render json: @all_coupons }
-      format.json { render json: @all_coupons }
+      format.html { render json: @client_json }
+      format.json { render json: @client_json }
     end
 
   end

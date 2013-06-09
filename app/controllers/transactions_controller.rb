@@ -88,7 +88,7 @@ class TransactionsController < ApplicationController
                                :conditions => " user_id = #{ params[:device_id] }
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
-     unless @check
+     unless @check.count == 0
 
       @buy_coupon = Transaction.create(  :user_id => params[:device_id],
                                          :coupon_id => params[:coupon_id],
@@ -96,6 +96,12 @@ class TransactionsController < ApplicationController
                                          :date => Time.now,
                                          :savings => params[:savings]
                                       )
+
+      @buy_coupon = Transaction.find(:all,
+                               :select => " count(user_id) ",
+                               :conditions => " user_id = #{ params[:device_id] }
+                                                and coupon_id = #{ params[:coupon_id] }"
+                              )
 
       @quantity = Coupon.find_by_id("#{params[:coupon_id]}")
 
@@ -107,11 +113,11 @@ class TransactionsController < ApplicationController
      end
 
      respond_to do |format|
-      format.html { render json: @check.to_json , :content_type => 'application/json' }
+      format.html { render json: @buy_coupon.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @buy_coupon.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: @check.to_json , :content_type => 'application/json' }
+        format.js { render json: @buy_coupon.to_json , :content_type => 'application/json' }
       end
      end
 

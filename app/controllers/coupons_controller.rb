@@ -91,9 +91,9 @@ class CouponsController < ApplicationController
   def get_coupons
     @all_coupons = Coupon.find(:all,
                                :select => "id,category_id,preview_image,title,description,
-                                           ( 6371 * acos( cos( deg2rad( #{params[:latit]} ) ) * cos( deg2rad( latitude ) ) *
-                                              cos( deg2rad( longitude ) - deg2rad( #{params[:longit]} ) ) +
-                                              sin( deg2rad( #{params[:latit]}) ) * sin( deg2rad( latitude ) ) )
+                                           ( 6371 * acos( cos( radians( #{params[:latit]} ) ) * cos( radians( latitude ) ) *
+                                              cos( radians( longitude ) - radians( #{params[:longit]} ) ) +
+                                              sin( radians( #{params[:latit]}) ) * sin( radians( latitude ) ) )
                                             )")
 
     abort( @all_coupons )

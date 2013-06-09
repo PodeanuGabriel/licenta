@@ -106,15 +106,17 @@ class CouponsController < ApplicationController
                               
     @client_json = Array.new
     
+    @client_json << { :coupon => "" }
+
     @all_coupons.each do |i|
-      @client_json << {
+      @client_json.coupon << [{
           :id => i.id,
           :productCategory => i.category_id,
           :previewImage => i.preview_image,
           :couponTitle => i.title,
           :couponDescription => i.description,
           :distance => i.distance
-      }
+      }]
     end
 
     respond_to do |format|

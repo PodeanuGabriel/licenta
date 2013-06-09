@@ -102,21 +102,23 @@ class TransactionsController < ApplicationController
                                :conditions => " user_id = #{ params[:device_id] }
                                                 and coupon_id = #{ params[:coupon_id] }"
                               )
-
       @quantity = Coupon.find(:all,
                               :select => "number_of_coupons",
-                              :conditions => " id = #{params[:coupon_id]}").update_column(:number_of_coupons, @quantity-1)
+                              :conditions => "id id = #{params[:coupon_id]}")
+                            
+      @update = Coupon.find(:all,
+                            :conditions => " id = #{params[:coupon_id]}").update_column(:number_of_coupons, @quantity-1)
 
-      @quantity.save
+      @update.save
 
      end
 
      respond_to do |format|
-      format.html { render json: @quantity.to_json , :content_type => 'application/json' }
+      format.html { render json: @update.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: @quantity.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @update.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: @quantity.to_json , :content_type => 'application/json' }
+        format.js { render json: @update.to_json , :content_type => 'application/json' }
       end
      end
 

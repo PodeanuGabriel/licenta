@@ -107,17 +107,17 @@ class TransactionsController < ApplicationController
                               :select => "number_of_coupons - 1",
                               :conditions => " id = #{params[:coupon_id]}")
 
-      @quantity.update( quantity: @quantity.number_of_coupons )
-      @quantity.save
+      #@quantity.update( quantity: @quantity.number_of_coupons )
+      #@quantity.save
 
      end
 
      respond_to do |format|
-      format.html { render json: @buy_coupon.to_json , :content_type => 'application/json' }
+      format.html { render json: @quantity.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: @buy_coupon.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @quantity.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: @buy_coupon.to_json , :content_type => 'application/json' }
+        format.js { render json: @quantity.to_json , :content_type => 'application/json' }
       end
      end
 

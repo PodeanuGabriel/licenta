@@ -106,12 +106,8 @@ class CouponsController < ApplicationController
                               
     @client_json = Array.new(1)
 
-    @client_json << {
-      :coupon => ""
-    }
-
     @all_coupons.each do |i|
-      @client_json.coupon << [{
+      @client_json << [{
           :id => i.id,
           :productCategory => i.category_id,
           :previewImage => i.preview_image,

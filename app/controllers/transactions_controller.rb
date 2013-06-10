@@ -83,7 +83,7 @@ class TransactionsController < ApplicationController
 
   def claim_coupon
 
-    @check = Transaction.where( :user_id => params[:device_id] , :coupon_id => params[:coupon_id] )
+    @check = Transaction.where( "'#{:user_id}'"=> params[:device_id] , :coupon_id => params[:coupon_id] )
                               
      if( @check.blank? )
 

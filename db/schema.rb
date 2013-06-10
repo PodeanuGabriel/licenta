@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609065853) do
+ActiveRecord::Schema.define(:version => 20130609201423) do
 
   create_table "categories", :force => true do |t|
     t.string   "category_name"
@@ -60,12 +60,14 @@ ActiveRecord::Schema.define(:version => 20130609065853) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.integer  "coupon_id"
     t.date     "buy_date"
     t.integer  "quantity"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "favorite"
+    t.string   "savings"
   end
 
   create_table "user_sessions", :force => true do |t|

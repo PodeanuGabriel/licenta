@@ -90,25 +90,16 @@ class TransactionsController < ApplicationController
                               )
      unless @check.count == 0
 
-      @buy_coupon = Transaction.create(  :user_id => params[:device_id],
-                                         :coupon_id => params[:coupon_id],
-                                         :quantity => 1,
-                                         :date => Time.now,
-                                         :savings => params[:savings]
-                                      )
+      @buy_coupon = Transaction.new( :user_id => params[:device_id],
+                                     :coupon_id => params[:coupon_id],
+                                     :quantity => 1,
+                                     :buy_date => Time.now,
+                                     :savings => params[:savings]
+                                   )
+      @buy_coupon.save
 
-      @buy_coupon = Transaction.find(:all,
-                               :select => " count(user_id) ",
-                               :conditions => " user_id = #{ params[:device_id] }
-                                                and coupon_id = #{ params[:coupon_id] }"
-                              )
-      @quantity = Coupon.find(:all,
-                              :select => "number_of_coupons",
-                              :conditions => " id = #{params[:coupon_id]}")
-                            
-      @update = Coupon.find(:all,
-                            :conditions => " id = #{params[:coupon_id]}").update_column(:number_of_coupons, @quantity-1)
-
+      @update = Coupon.find(params[:coupon_id])
+      @update.number_of_coupons = @update.number_of_coupons - 1
       @update.save
 
      end

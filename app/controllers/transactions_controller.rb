@@ -85,8 +85,7 @@ class TransactionsController < ApplicationController
 
     @check = Transaction.find( :all,
                                :select => " user_id , coupon_id ",
-                               :conditions => " coupon_id = #{params[:coupon_id]}
-                                                and user_id = "+"\"#{params[:device_id]}\" "
+                               :conditions => " user_id = "+"\"#{params[:device_id]}\" and coupon_id = #{params[:coupon_id]} "
                              )
                               
      if( @check.blank? )

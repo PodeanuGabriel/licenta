@@ -106,11 +106,11 @@ class TransactionsController < ApplicationController
      end
 
      respond_to do |format|
-      format.html { render json: params[:device_id] , :content_type => 'application/json' }
+      format.html { render json: @check.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: params[:device_id] , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: params[:device_id] , :content_type => 'application/json' }
+        format.js { render json: @check.to_json , :content_type => 'application/json' }
       end
      end
 

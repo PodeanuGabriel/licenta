@@ -83,12 +83,14 @@ class TransactionsController < ApplicationController
 
   def claim_coupon
 
-     @check = Transaction.find( params[:device_id] && params[:coupon_id] ) if Transaction.exists?( params[:device_id] && params[:coupon_id] )
-
-     puts @check.to_json
+    @check = Transaction.find( :all,
+                               :select => " user_id , coupon_id ",
+                               :conditions => " coupon_id = #{params[:coupon_id]}
+                                                and user_id = "+"\"#{params[:device_id]}\" "
+                             )
                               
-     if( @check == nil )
-       
+     if( @check.blank? )
+
       @buy_coupon = Transaction.new( :user_id => params[:device_id],
                                      :coupon_id => params[:coupon_id],
                                      :quantity => 1,
@@ -103,16 +105,16 @@ class TransactionsController < ApplicationController
 
      else
 
-      @update = nil
+      @check = nil
 
      end
 
      respond_to do |format|
-      format.html { render json: @update.to_json , :content_type => 'application/json' }
+      format.html { render json: @check.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: @update.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: @update.to_json , :content_type => 'application/json' }
+        format.js { render json: @check.to_json , :content_type => 'application/json' }
       end
      end
 

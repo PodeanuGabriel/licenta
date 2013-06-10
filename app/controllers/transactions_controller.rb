@@ -85,7 +85,7 @@ class TransactionsController < ApplicationController
 
      @check = Transaction.find( params[:device_id] && params[:coupon_id] ) if Transaction.exists?( params[:device_id] && params[:coupon_id] )
 
-     #abort( params[:device_id] )
+     abort( @check.to_json )
                               
      if( @check == nil )
        

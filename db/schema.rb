@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20130609201423) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer  "user_id"
+    t.string  "user_id"
     t.integer  "coupon_id"
     t.date     "buy_date"
     t.integer  "quantity"

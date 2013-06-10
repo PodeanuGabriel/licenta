@@ -87,7 +87,7 @@ class TransactionsController < ApplicationController
                               
      if( @check.blank? )
 
-      @buy_coupon = Transaction.new( :user_id => params[:device_id],
+      @buy_coupon = Transaction.new( :user_id => "'#{params[:device_id]}'",
                                      :coupon_id => params[:coupon_id],
                                      :quantity => 1,
                                      :buy_date => Time.now,

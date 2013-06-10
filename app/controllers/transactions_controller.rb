@@ -83,10 +83,7 @@ class TransactionsController < ApplicationController
 
   def claim_coupon
 
-    @check = Transaction.find( :all,
-                               :select => " user_id , coupon_id ",
-                               :conditions => " user_id = "+"\"#{params[:device_id]}\" and coupon_id = #{params[:coupon_id]} "
-                             )
+    @check = Transaction.where( :user_id => params[:device_id] , :coupon_id => params[:coupon_id] )
                               
      if( @check.blank? )
 
@@ -104,8 +101,8 @@ class TransactionsController < ApplicationController
 
      else
 
-      @check = nil
-
+      @check = "Coupon already bought"
+      
      end
 
      respond_to do |format|

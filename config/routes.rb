@@ -36,6 +36,7 @@ Server::Application.routes.draw do
   match '/get_coupons', :to => 'coupons#get_coupons'
   match '/get_coupon_details', :to => 'coupons#get_coupon_details'
   match '/claim_coupon', :to => 'transactions#claim_coupon'
+  match '/get_map_coupon_details', :to => 'coupons#get_map_coupon_details'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

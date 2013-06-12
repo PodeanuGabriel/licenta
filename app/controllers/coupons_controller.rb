@@ -146,9 +146,9 @@ class CouponsController < ApplicationController
     @all_coupons = Coupon.find(:all,
                                :joins => " JOIN companies on companies.id = coupons.company_id
                                            JOIN categories on coupons.category_id = categories.id",
-                               :select => "coupons.id, coupons.title,coupons.description,coupons.price_with_coupon,
-                                           coupons.latitude,coupons.longtitude,coupons.preview_image,
-                                           companies.logo,categories.category_image"
+                               :select => "coupons.id, coupons.title, coupons.description, coupons.price_with_coupon,
+                                           coupons.latitude, coupons.longitude, coupons.preview_image,
+                                           companies.logo, categories.category_image"
                               )
 
     respond_to do |format|

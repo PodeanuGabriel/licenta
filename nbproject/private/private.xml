@@ -5,5 +5,9 @@
             <url>app/models/transaction.rb</url>
             <line>3</line>
         </file>
+        <file>
+            <url>app/views/index/show.html.erb</url>
+            <line>10</line>
+        </file>
     </editor-bookmarks>
 </project-private>

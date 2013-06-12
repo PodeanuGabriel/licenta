@@ -96,7 +96,7 @@ class CouponsController < ApplicationController
                                                           sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
                                                         )
                                            ) as distance",
-                               :conditions => " #{params[:distance] } >= ( 6371 * acos( cos( radians( #{params[:latit]} ) ) * cos( radians( latitude ) ) *
+                               :conditions => " #{ params[:distance] } >= ( 6371 * acos( cos( radians( #{params[:latit]} ) ) * cos( radians( latitude ) ) *
                                                                                         cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
                                                                                         sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
                                                                                       )
@@ -140,6 +140,26 @@ class CouponsController < ApplicationController
       end
     end
     
+  end
+
+  def get_map_coupon_details
+    @all_coupons = Coupon.find(:all,
+                               :joins => " JOIN companies on companies.id = coupons.company_id
+                                           JOIN categories on coupons.category_id = categories.id",
+                               :select => "coupons.id, coupons.title,coupons.description,coupons.price_with_coupon,
+                                           coupons.latitude,coupons.longtitude,coupons.preview_image,
+                                           companies.logo,categories.category_image"
+                              )
+
+    respond_to do |format|
+      format.html { render json: @all_coupons.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @all_coupons.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @all_coupons.to_json , :content_type => 'application/json' }
+      end
+    end
+
   end
 
 end

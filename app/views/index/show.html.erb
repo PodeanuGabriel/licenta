@@ -9,43 +9,51 @@
         <div id="page">
             <div class="container-narrow">
               <div class="login-form" id="login">
-              <!--     <p style="text-align:center;" >Login</p>
-                  <input class="input-block-level" id="login_email" placeholder="Email address" required="required" size="30" type="text" />
-                  <input class="input-block-level" id="login_password" placeholder="Password" required="required" size="30" type="password" />
-              -->    <div class="submit-btn row-fluid">
-                      <% if current_user %>
-                        <div class="span12">
-                          <div class="span4">
-                            <button type="button" class="btn btn-primary" >
-                              <%= link_to 'Coupons' , show_coupon_path   %>
-                            </button>
-                          </div>
-                          <div class="span4">
-                            <button type="button" class="btn btn-primary" >
-                              <%= link_to 'Companies' , show_company_path   %>
-                            </button>
-                          </div>
-                          <div class="span4">
-                            <button type="button" class="btn btn-primary" >
-                              <%= link_to 'Logout' , logout_path   %>
-                            </button>
-                          </div>
-                        </div>
-                      <% else %>
-                        <div class="span10 offset1">
-                          <div class="span5 offset1">
-                            <button type="button" class="btn btn-primary" >
-                              <%= link_to 'Login', login_path %>
-                            </button>
-                          </div>
-                          <div class="span5">
-                            <button type="button" class="btn btn-primary" >
-                            <%= link_to 'Register', register_path %>
-                            </button>
-                          </div>
-                        </div>
-                      <% end %>
-                   </div>
+                <div class="row-fluid">
+                     <% if current_user %>
+                        <p style="text-align:center"> Welcome,
+                        <%= current_user_details  %>
+                        </p>
+                     <% else %>
+                        <p style="text-align:center"> Please Login or Register
+                     <% end %>
+                  </p>
+                  <br />
+                </div>
+                <div class="submit-btn row-fluid">
+                  <% if current_user %>
+                    <div class="span12">
+                      <div class="span3 offset1">
+                        <button type="button" class="btn btn-primary" >
+                          <%= link_to 'Coupons' , show_coupon_path   %>
+                        </button>
+                      </div>
+                      <div class="span3">
+                        <button type="button" class="btn btn-primary" >
+                          <%= link_to 'Companies' , show_company_path   %>
+                        </button>
+                      </div>
+                      <div class="span3 offset2">
+                        <button type="button" class="btn btn-primary" >
+                          <%= link_to 'Logout' , logout_path   %>
+                        </button>
+                      </div>
+                    </div>
+                  <% else %>
+                    <div class="span12">
+                      <div class="span5 offset2">
+                        <button type="button" class="btn btn-primary" >
+                          <%= link_to 'Login', login_path %>
+                        </button>
+                      </div>
+                      <div class="span4 offset1">
+                        <button type="button" class="btn btn-primary" >
+                        <%= link_to 'Register', register_path %>
+                        </button>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
         </div>

@@ -163,7 +163,16 @@ class TransactionsController < ApplicationController
                                   :joins => "JOIN coupons on transactions.coupon_id = coupons.id",
                                   :select => " coupons.id, coupons.showcase_image, coupons.title,
                                                coupons.description, transactions.savings " ,
-                                  :conditions => " user_id = #{params[:device_id]} " )
+                                  :conditions => " user_id = #{params[:device_id]} and favorite = 1" )
+
+    respond_to do |format|
+      format.html { render json: @favorite.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @favorite.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @favorite.to_json , :content_type => 'application/json' }
+      end
+    end
   end
 
 end

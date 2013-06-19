@@ -87,7 +87,7 @@ class TransactionsController < ApplicationController
 
      @number = Coupon.find( :all, :select => "number_of_coupons", :conditions => "id = #{params[:coupon_id]}")
 
-     if( @check.blank? && @number.to_json > 0.to_s )
+     if( (@number.to_json).to_i > 0 && @check.blank? )
 
       @buy_coupon = Transaction.new( :user_id => params[:device_id].gsub(/[']/,'') ,
                                      :coupon_id => params[:coupon_id],
@@ -101,7 +101,7 @@ class TransactionsController < ApplicationController
       @update.number_of_coupons = @update.number_of_coupons - 1
       @update.save
 
-     elsif( @number.to.json <= 0.to_s )
+     elsif( (@number.to_json).to_i <= 0 )
 
       @check = "Coupon Sold Out"
 

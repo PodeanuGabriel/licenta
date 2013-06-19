@@ -74,7 +74,7 @@
   </div>
   <div class="field">
     <% @category_names = Category.find(:all,
-                                     :select => " categories.id,categories.category_name ").map{|x| x} %>
+                                       :select => " categories.id,categories.category_name ").map{|x| x} %>
     
     <%= f.label :category %><br />
     <%= f.select :category_id , options_from_collection_for_select(@category_names, "id", "category_name" ), :prompt => "Choose a category" %>

@@ -1,6 +1,9 @@
 
 Server::Application.routes.draw do
   
+  resources :filters
+
+
   resources :user_sessions
   resources :favorites
   resources :coupons
@@ -34,6 +37,7 @@ Server::Application.routes.draw do
   match '/favorite_remove', :to => 'transactions#favorite_remove'
   match '/favorites_show', :to => 'transactions#favorites_show'
 
+  match '/get_filters', :to => 'filters#get_filters'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

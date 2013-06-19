@@ -120,7 +120,7 @@ class TransactionsController < ApplicationController
 
     @claimed = Transaction.find( :all,
                                  :joins => "JOIN coupons on transactions.coupon_id = coupons.id",
-                                 :select => " coupon.id, coupons.showcase_image, coupons.title, 
+                                 :select => " coupons.id, coupons.showcase_image, coupons.title,
                                               coupons.description, transactions.savings " ,
                                  :conditions => " user_id = #{params[:device_id]} " )
 

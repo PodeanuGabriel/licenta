@@ -101,7 +101,7 @@ class TransactionsController < ApplicationController
       @update.number_of_coupons = @update.number_of_coupons - 1
       @update.save
 
-     elsif( @number <= 0 )
+     else if( @number.to.json <= 0.to_s )
 
       @check = "Coupon Sold Out"
 

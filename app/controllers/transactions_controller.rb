@@ -114,25 +114,16 @@ class TransactionsController < ApplicationController
 
   def favorite_coupon
 
-    @check = Transaction.where( :user_id=> params[:device_id] , :coupon_id => params[:coupon_id] )
+     Transaction.update_all( "favorite = 1", "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
 
-    @result = 0
-
-    if( @check.favorite == nil )
-
-      @check.favorite = 1
-      @check.save
-
-      @result = 1
-
-    end
-
+     @check = Transaction.find( :all , :conditions => "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+    
     respond_to do |format|
-      format.html { render json: @result.to_json , :content_type => 'application/json' }
+      format.html { render json: @check.to_json , :content_type => 'application/json' }
       if params[:callback]
-        format.js { render json: @result.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+        format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else
-        format.js { render json: @result.to_json , :content_type => 'application/json' }
+        format.js { render json: @check.to_json , :content_type => 'application/json' }
       end
     end
 

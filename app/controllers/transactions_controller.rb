@@ -124,7 +124,14 @@ class TransactionsController < ApplicationController
                                               coupons.description, transactions.savings " ,
                                  :conditions => " user_id = #{params[:device_id]} " )
 
-    
+    respond_to do |format|
+      format.html { render json: @check.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @check.to_json , :content_type => 'application/json' }
+      end
+    end
     
   end
 

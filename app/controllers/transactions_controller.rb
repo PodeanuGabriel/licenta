@@ -152,7 +152,7 @@ class TransactionsController < ApplicationController
 
     @favorite = Transaction.find( :all,
                                   :joins => "JOIN coupons on transactions.coupon_id = coupons.id",
-                                  :select => " coupons.id, coupons.showcase_image, coupons.title,
+                                  :select => " coupons.id, coupons.preview_image, coupons.title,
                                                coupons.description, transactions.savings " ,
                                   :conditions => " user_id = #{params[:device_id]} and favorite = 1" )
 

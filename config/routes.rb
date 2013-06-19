@@ -38,6 +38,7 @@ Server::Application.routes.draw do
   match '/favorites_show', :to => 'transactions#favorites_show'
 
   match '/get_filters', :to => 'filters#get_filters'
+  match '/add_filters', :to => 'filters#add_filters'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

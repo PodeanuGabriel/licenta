@@ -100,7 +100,7 @@ class FiltersController < ApplicationController
 
   def add_filters
 
-    @check = Filter.where( :user_id=> params[:device_id] )
+    @check = Filter.where( :user_id => params[:device_id] )
 
     if( @check.blank? )
 

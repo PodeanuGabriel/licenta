@@ -101,7 +101,7 @@ class CouponsController < ApplicationController
                                                                                         cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
                                                                                         sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
                                                                                       )
-                                                                         ) and ( end_date - current_date > 0 ",
+                                                                         ) and ( end_date - current_date ) > 0 ",
                                :order => "distance asc"
                               )
 

@@ -84,7 +84,7 @@ class FiltersController < ApplicationController
   def get_filters
     
     @filters = Filter.find( :all,
-                            :conditions => " user_id = #{params[:device_id]} " )
+                            :conditions => " user_id = '#{params[:device_id]}' " )
 
     respond_to do |format|
       format.html { render json: @filters.to_json , :content_type => 'application/json' }
@@ -102,7 +102,7 @@ class FiltersController < ApplicationController
     @check = Filter.where( :user_id => params[:device_id] )
 
     if( @check.blank? )
-
+      
       @add_filters = Filter.new( :user_id => params[:device_id] ,
                                  :filters => params[:filters]
                                )
@@ -110,16 +110,14 @@ class FiltersController < ApplicationController
 
     else
 
-      Filter.update_all( "filters = #{params[:filters]}" , "user_id = #{params[:device_id]}" )
+      Filter.update_all("filters = #{params[:filters]}", "user_id = '#{params[:device_id]}'")
 
-      @check = Filter.find( :all,
-                            :conditions => "user_id = #{params[:device_id]}"
-                          )
-
+      @update = Filter.where( "user_id = '#{params[:device_id]}'" )
+      
     end
 
     respond_to do |format|
-      format.html { render json: @check.to_json , :content_type => 'application/json' }
+      format.html { render json: @update.to_json , :content_type => 'application/json' }
       if params[:callback]
         format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
       else

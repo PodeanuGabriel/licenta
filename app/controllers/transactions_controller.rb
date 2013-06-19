@@ -114,9 +114,9 @@ class TransactionsController < ApplicationController
 
   def favorite_coupon
 
-     Transaction.update_all( "favorite = 1", "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+     Transaction.update_all( "favorite = 1", "user_id = '#{params[:device_id]}' and coupon_id = #{params[:coupon_id]}" )
 
-     @check = Transaction.find( :all , :conditions => "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+     @check = Transaction.find( :all , :conditions => "user_id = '#{params[:device_id]}' and coupon_id = #{params[:coupon_id]}" )
     
     respond_to do |format|
       format.html { render json: @check.to_json , :content_type => 'application/json' }
@@ -131,9 +131,9 @@ class TransactionsController < ApplicationController
 
   def favorite_remove
     
-    Transaction.update_all( "favorite = 0", "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+    Transaction.update_all( "favorite = 0", "user_id = '#{params[:device_id]}' and coupon_id = #{params[:coupon_id]}" )
 
-    @check = Transaction.find( :all , :conditions => "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+    @check = Transaction.find( :all , :conditions => "user_id = '#{params[:device_id]}' and coupon_id = #{params[:coupon_id]}" )
 
     respond_to do |format|
       format.html { render json: @check.to_json , :content_type => 'application/json' }
@@ -151,7 +151,7 @@ class TransactionsController < ApplicationController
                                  :joins => "JOIN coupons on transactions.coupon_id = coupons.id",
                                  :select => " coupons.id, coupons.preview_image, coupons.title,
                                               coupons.description, transactions.savings " ,
-                                 :conditions => " user_id = #{params[:device_id]} " )
+                                 :conditions => " user_id = '#{params[:device_id]}' " )
 
     respond_to do |format|
       format.html { render json: @claimed.to_json , :content_type => 'application/json' }
@@ -170,7 +170,7 @@ class TransactionsController < ApplicationController
                                   :joins => "JOIN coupons on transactions.coupon_id = coupons.id",
                                   :select => " coupons.id, coupons.preview_image, coupons.title,
                                                coupons.description, transactions.savings " ,
-                                  :conditions => " user_id = #{params[:device_id]} and favorite = 1" )
+                                  :conditions => " user_id = '#{params[:device_id]}' and favorite = 1" )
 
     respond_to do |format|
       format.html { render json: @favorite.to_json , :content_type => 'application/json' }

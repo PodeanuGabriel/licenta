@@ -26,8 +26,10 @@ Server::Application.routes.draw do
   match '/home' , :to => 'index#show'
 
   match '/claim_coupon', :to => 'transactions#claim_coupon'
-  match '/favorite_coupon', :to => 'transactions#favorite_coupon'
   match '/savings_show', :to => 'transactions#savings_show'
+
+  match '/favorite_coupon', :to => 'transactions#favorite_coupon'
+  match '/favorite_remove', :to => 'transactions#favorite_remove'
   match '/favorites_show', :to => 'transactions#favorites_show'
 
   

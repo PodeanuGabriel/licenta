@@ -129,6 +129,22 @@ class TransactionsController < ApplicationController
 
   end
 
+  def favorite_remove
+    
+    Transaction.update_all( "favorite = 0", "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+
+    @check = Transaction.find( :all , :conditions => "user_id = #{params[:device_id]} and coupon_id = #{params[:coupon_id]}" )
+
+    respond_to do |format|
+      format.html { render json: @check.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @check.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @check.to_json , :content_type => 'application/json' }
+      end
+    end
+  end
+
   def savings_show
 
     @claimed = Transaction.find( :all,

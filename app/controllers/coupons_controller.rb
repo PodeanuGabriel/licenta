@@ -89,6 +89,13 @@ class CouponsController < ApplicationController
   end
 
   def get_coupons
+
+    if( params[:filter].size == 0 )
+      @filters = Category.find( :all, :select => "id")
+    else
+      @filters = params[:filter]
+    end
+
     @all_coupons = Coupon.find(:all,
                                :select => "id, category_id, preview_image, title, description,
                                            ( 6371 * acos( cos( radians( #{params[:latit]} ) ) * cos( radians( latitude ) ) *
@@ -100,7 +107,7 @@ class CouponsController < ApplicationController
                                                                                         cos( radians( longitude )           - radians( #{params[:longit]} ) ) +
                                                                                         sin( radians( #{params[:latit]} ) ) * sin( radians( latitude ) )
                                                                                       )
-                                                                         ) ",
+                                                                         ) and category_id in ( #{ @filter } )",
                                :order => "distance asc"
                               )
 

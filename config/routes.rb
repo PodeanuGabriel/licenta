@@ -14,6 +14,8 @@ Server::Application.routes.draw do
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
 
+  match '/all_categories', :to => 'categories#all_categories'
+
   match '/show_coupon', :to => 'coupons#index'
   match '/get_coupons', :to => 'coupons#get_coupons'
   match '/get_coupon_details', :to => 'coupons#get_coupon_details'

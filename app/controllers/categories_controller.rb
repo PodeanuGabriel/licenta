@@ -80,4 +80,21 @@ class CategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def all_categories
+
+    @categories = Category.all
+
+    respond_to do |format|
+      
+      format.html { render json: @categories.to_json , :content_type => 'application/json' }
+      if params[:callback]
+        format.js { render json: @categories.to_json , :callback => params[:callback] , :content_type => 'application/json' }
+      else
+        format.js { render json: @categories.to_json , :content_type => 'application/json' }
+      end
+      
+     end
+  end
+
 end

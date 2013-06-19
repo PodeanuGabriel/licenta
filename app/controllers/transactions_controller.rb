@@ -98,10 +98,6 @@ class TransactionsController < ApplicationController
       @update = Coupon.find(params[:coupon_id])
       @update.number_of_coupons = @update.number_of_coupons - 1
       @update.save
-
-     else
-
-      @check = "Coupon already bought"
       
      end
 

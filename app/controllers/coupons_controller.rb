@@ -127,7 +127,13 @@ class CouponsController < ApplicationController
                                              from transactions
                                              where coupon_id = #{params[:id]}
                                                and user_id = #{params[:device_id]}
-                                           ) as bought ",
+                                           ) as bought,
+                                           (
+                                             select favorite
+                                             from transactions
+                                             where coupon_id = #{params[:id]}
+                                               and user_id = #{params[:device_id]}
+                                           ) as favorite",
                                :conditions => " coupons.id = #{ params[:id] } "
                               )
 

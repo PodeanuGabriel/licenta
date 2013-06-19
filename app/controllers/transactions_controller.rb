@@ -116,4 +116,16 @@ class TransactionsController < ApplicationController
 
   end
 
+  def savings_show
+
+    @claimed = Transaction.find( :all,
+                                 :joins => "coupons on transactions.coupon_id = coupons.id",
+                                 :select => " coupon.id, coupons.showcase_image, coupons.title, 
+                                              coupons.description, transactions.savings " ,
+                                 :conditions => " user_id = #{params[:device_id]} " )
+
+    
+    
+  end
+
 end

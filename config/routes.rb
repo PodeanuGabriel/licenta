@@ -15,16 +15,19 @@ Server::Application.routes.draw do
   match '/logout', :to => 'user_sessions#destroy'
 
   match '/show_coupon', :to => 'coupons#index'
+  match '/get_coupons', :to => 'coupons#get_coupons'
+  match '/get_coupon_details', :to => 'coupons#get_coupon_details'
+  match '/get_map_coupon_details', :to => 'coupons#get_map_coupon_details'
+
   match '/show_company', :to => 'companies#index'
 
   match '/register', :to => 'users#new'
 
   match '/home' , :to => 'index#show'
 
-  match '/get_coupons', :to => 'coupons#get_coupons'
-  match '/get_coupon_details', :to => 'coupons#get_coupon_details'
   match '/claim_coupon', :to => 'transactions#claim_coupon'
-  match '/get_map_coupon_details', :to => 'coupons#get_map_coupon_details'
+  match '/savings_show', :to => 'transactions#savings_show'
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

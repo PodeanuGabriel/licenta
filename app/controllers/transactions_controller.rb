@@ -100,7 +100,11 @@ class TransactionsController < ApplicationController
       @update = Coupon.find(params[:coupon_id])
       @update.number_of_coupons = @update.number_of_coupons - 1
       @update.save
-      
+
+     elsif( @number <= 0 )
+
+      @check = "Coupon Sold Out"
+
      end
 
      respond_to do |format|

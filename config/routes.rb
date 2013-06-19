@@ -1,23 +1,12 @@
+
 Server::Application.routes.draw do
   
   resources :user_sessions
-
-
   resources :favorites
-
-
   resources :coupons
-
-
   resources :categories
-
-
   resources :transactions
-
-
   resources :companies
-
-
   resources :users
 
   root :to => 'index#show'
@@ -26,7 +15,6 @@ Server::Application.routes.draw do
   match '/logout', :to => 'user_sessions#destroy'
 
   match '/show_coupon', :to => 'coupons#index'
-
   match '/show_company', :to => 'companies#index'
 
   match '/register', :to => 'users#new'

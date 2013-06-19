@@ -83,9 +83,11 @@ class TransactionsController < ApplicationController
 
   def claim_coupon
 
-    @check = Transaction.where( :user_id=> params[:device_id] , :coupon_id => params[:coupon_id] )
-                              
-     if( @check.blank? )
+     @check = Transaction.where( :user_id=> params[:device_id] , :coupon_id => params[:coupon_id] )
+
+     @number = Coupon.find( :all, :select => "number_of_coupons", :conditions => "id = #{params[:coupon_id]}")
+
+     if( @check.blank? && @number > 0 )
 
       @buy_coupon = Transaction.new( :user_id => params[:device_id].gsub(/[']/,'') ,
                                      :coupon_id => params[:coupon_id],

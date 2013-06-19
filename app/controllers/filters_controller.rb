@@ -84,7 +84,6 @@ class FiltersController < ApplicationController
   def get_filters
     
     @filters = Filter.find( :all,
-                            :select => " filters ",
                             :conditions => " user_id = #{params[:device_id]} " )
 
     respond_to do |format|
